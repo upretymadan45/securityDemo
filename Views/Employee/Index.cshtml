@@ -1,0 +1,59 @@
+@model List<Employee>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-bottom:10px;">
+            <a asp-action="New" class="btn btn-outline-success float-right"><i class="fa fa-plus"></i> New</a>
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-12">
+            <form asp-action="Index" method="GET">
+                <div class="input-group">
+                    <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Please enter Employee Name to search.."/>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Search</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            @if(Model.Count==0){
+                <p>No employee(s) found!</p>
+            }else{
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Full Name</th>
+                            <th>Age</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model)
+                        {
+                            <tr>
+                                <td>@e.Id</td>
+                                <td>@e.FullName</td>
+                                <td>@e.Age</td>
+                                <td>
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+                                </td>
+                                <td>
+                                    <a href="#"><i class="fa fa-trash text-danger"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            }
+        </div>
+    </div>
+</div>
